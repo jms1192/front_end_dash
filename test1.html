@@ -1,0 +1,626 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  
+    <title>Ethereum NFT Dashboard</title>
+  
+    <link href="https://flipsideworldcup.kurdanalysts.com/css/app.css" rel="stylesheet">
+    <link href="https://flipsideworldcup.kurdanalysts.com/css/custom.css" rel="stylesheet">
+    <link href="https://flipsideworldcup.kurdanalysts.com/css/loading/preloader.css" rel="stylesheet">
+  
+    <script src="https://flipsideworldcup.kurdanalysts.com/lib/jquery/dist/jquery.min.js"></script><script type="text/javascript" src="chrome-extension://fnnegphlobjdpkhecapkijjdkgcjhkib/inject-script.js" id="one-x-extension" data-extension-id="fnnegphlobjdpkhecapkijjdkgcjhkib"></script>
+    <script src="https://flipsideworldcup.kurdanalysts.com/js/content-layout.js"></script>
+    <script src="https://flipsideworldcup.kurdanalysts.com/js/app.js"></script>
+    <script src="https://flipsideworldcup.kurdanalysts.com/js/app-settings.js"></script>
+    <script src="https://flipsideworldcup.kurdanalysts.com/js/ajax-manager.js"></script>
+    <script src="https://flipsideworldcup.kurdanalysts.com/js/loading/jquery.preloader.min.js"></script>
+    <script src="https://flipsideworldcup.kurdanalysts.com/js/custom.js"></script>
+    <script src="https://flipsideworldcup.kurdanalysts.com/js/libs/components.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet">
+
+    <script>
+        localStorage.getItem("dark-mode") === "dark" && document.documentElement.classList.add("dark");
+    </script>
+</head>
+<body>
+    <div id="root" class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900">
+        <div class="sidebar print:hidden">
+            <div class="main-sidebar">
+                <div class="flex h-full w-full flex-col items-center border-r border-slate-150 bg-white dark:border-navy-700 dark:bg-navy-800">
+                    <div class="flex pt-4">
+                        <a href="/">
+                            <svg width="152.000000pt" height="126.000000pt" viewBox="0 0 152.000000 126.000000" fill="none" xmlns="http://www.w3.org/2000/svg" class="fill-black dark:fill-white h-9 w-9 transition-transform duration-500 ease-in-out hover:rotate-[360deg]">
+                                <g transform="translate(0.000000,126.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+                                <path d="M340 976 c0 -287 0 -288 24 -329 44 -75 56 -146 56 -333 l0 -171 46 -43 c55 -51 131 -86 202 -96 l53 -7 -3 489 -3 489 -27 57 c-55 117 -176 209 -295 224 l-53 7 0 -287z M1093 1250 c-107 -25 -212 -113 -261 -218 l-27 -57 -3 -489 -3 -489 53 7 c71 10 147 45 202 96 l46 43 0 171 c0 187 12 258 56 333 24 41 24 42 24 327 l0 286 -27 -1 c-16 -1 -42 -4 -60 -9z M2 519 c3 -262 3 -265 29 -320 49 -104 151 -180 263 -195 l47 -7 -3 264 c-3 252 -4 266 -27 316 -28 62 -112 146 -175 174 -24 10 -65 22 -91 26 l-46 6 3 -264z M1423 766 c-88 -28 -176 -107 -216 -194 -21 -44 -22 -65 -25 -311 l-3 -264 47 7 c112 15 214 91 263 195 26 55 26 59 29 319 l3 262 -28 -1 c-15 0 -47 -6 -70 -13z" fill-rule="evenodd" clip-rule="evenodd" fill="currentColor"></path>
+                                </g>
+                                </svg>
+                        </a>
+                    </div>
+
+                    <div class="is-scrollbar-hidden flex grow flex-col space-y-4 overflow-y-auto pt-6">
+                        
+                        <a href="/overview/ethereum" data-tooltip="Ethereum NFT Overview" data-placement="right" class="tooltip-main-sidebar flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                            <img style="border-radius: 20%;" class="w-9 h-9" src="https://flipsideworldcup.kurdanalysts.com/images//chains/ethereum.svg">
+                        </a>
+                        <a href="/overview/ethereum" data-tooltip="Crypto Punk" data-placement="right" class="tooltip-main-sidebar flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                            <img style="border-radius: 20%;" class="w-9 h-9" src="https://i.seadn.io/gae/5o9h-aiXNQS0vB1s95r_V0MqDoY-52dmtBfYn46gOzRgj99RJk6LwvgzAeiDu9X_pMfpm841mvI2J7v2MfPfAyaFUOU5WDLueiFOTpc?auto=format&w=1000">
+                        </a>
+                        <a href="/overview/solana" class="tooltip-main-sidebar flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25" data-tooltip="BAYC" data-placement="right">
+                            <img style="border-radius: 20%;" class="w-9 h-9" src="https://i.seadn.io/gae/UUfwNwCFdiRYrmV-3_Rhm5JUEWr25w4eJVGq9RFlHiijkF2oXDVq4-nqOcO497UU1uuj0Rg9wN--Zf3gzjdQln-1z5cx7z2nXABDZg?auto=format&w=1000">
+                        </a> 
+                        <a href="/overview/solana" class="tooltip-main-sidebar flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25" data-tooltip="MAYC" data-placement="right">
+                            <img style="border-radius: 20%;" class="w-9 h-9" src="https://i.seadn.io/gae/AmIC8VXXUegB6oj6HaURRMwT5rU06ZPN_3A3dViYVKaNZz6pUAuMHl0-odTPJD8eZ4ybwsR0XCc5YSivAFx_pfJh_1aUv-Bm7Sg6Cg?auto=format&w=1000">
+                        </a>
+                        <a href="/overview/solana" class="tooltip-main-sidebar flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25" data-tooltip="Otherdeed for Otherside" data-placement="right">
+                            <img style="border-radius: 20%;" class="w-9 h-9" src="https://i.seadn.io/gcs/files/d9c015eb4a834614c51ad8aaa9cb7d0f.jpg?auto=format&w=1000">
+                        </a>
+                        <a href="/overview/solana" class="tooltip-main-sidebar flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25" data-tooltip="Azuki" data-placement="right">
+                            <img style="border-radius: 20%;" class="w-9 h-9" src="https://i.seadn.io/gcs/files/8753d80a28bf3cec69a1bb697b22aae3.png?auto=format&w=1000">
+                        </a>
+
+                        <a href="/overview/ethereum" data-tooltip="CloneX" data-placement="right" class="tooltip-main-sidebar flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                            <img style="border-radius: 20%;" class="w-9 h-9" src="https://i.seadn.io/gcs/files/fac9efb15b2080697ab21969b343c7bb.png?auto=format&w=1000">
+                        </a>
+                        <a href="/overview/solana" class="tooltip-main-sidebar flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25" data-tooltip="Moonbirds" data-placement="right">
+                            <img style="border-radius: 20%;" class="w-9 h-9" src="https://i.seadn.io/gcs/files/7ce6039fa27f9f30926828afaf93e150.png?auto=format&w=1000">
+                        </a> 
+                        <a href="/overview/solana" class="tooltip-main-sidebar flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25" data-tooltip="Sandbox" data-placement="right">
+                            <img style="border-radius: 20%;" class="w-9 h-9" src="https://i.seadn.io/gae/SXH8tW1siikB80rwCRnjm1a5xM_MwTg9Xl9Db6mioIk9HIlDM09pVoSR7GKJgS6ulSUpgW9BDtMk_ePX_NKgO9A?auto=format&w=256">
+                        </a>
+                        <a href="/overview/solana" class="tooltip-main-sidebar flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25" data-tooltip="Doodles" data-placement="right">
+                            <img style="border-radius: 20%;" class="w-9 h-9" src="https://i.seadn.io/gcs/files/f3ad7b6285150f6d17a658be78856a86.png?auto=format&w=1000">
+                        </a>
+                        <a href="/overview/solana" class="tooltip-main-sidebar flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25" data-tooltip="Meebit" data-placement="right">
+                            <img style="border-radius: 20%;" class="w-9 h-9" src="https://i.seadn.io/gae/d784iHHbqQFVH1XYD6HoT4u3y_Fsu_9FZUltWjnOzoYv7qqB5dLUqpGyHBd8Gq3h4mykK5Enj8pxqOUorgD2PfIWcVj9ugvu8l0?auto=format&w=256">
+                        </a>
+                        <a href="/about" class="tooltip-main-sidebar flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25" data-tooltip="About Us" data-placement="right">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48"><path fill="#2196F3" d="M37 40H11l-6 6V12c0-3.3 2.7-6 6-6h26c3.3 0 6 2.7 6 6v22c0 3.3-2.7 6-6 6z"></path><g fill="#fff"><path d="M22 20h4v11h-4z"></path><circle cx="24" cy="15" r="2"></circle></g></svg>
+                        </a>
+
+
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-panel">
+                <div class="flex h-full grow flex-col bg-white pl-[var(--main-sidebar-width)] dark:bg-navy-750">
+                    <div class="flex h-18 w-full items-center justify-between pl-4 pr-1">
+                        <p class="text-base tracking-wider text-slate-800 dark:text-navy-100">
+                            Dashboard
+                        </p>
+                        <button class="sidebar-close btn h-7 w-7 rounded-full p-0 text-primary hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:text-accent-light/80 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 xl:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                        </button>
+                        
+                    </div>
+
+                    <div class="nav-wrapper h-[calc(100%-4.5rem)] overflow-x-hidden pb-6" data-simplebar="init"><div class="simplebar-wrapper" style="margin: 0px 0px -24px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: 100%; overflow: hidden;"><div class="simplebar-content" style="padding: 0px 0px 24px;">
+                        <div class="my-3 mx-4 h-px bg-slate-200 dark:bg-navy-500"></div>
+                    </div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 219px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: hidden;"><div class="simplebar-scrollbar" style="height: 0px; display: none;"></div></div></div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="header print:hidden">
+            <div class="header-container relative flex w-full bg-white dark:bg-navy-700 print:hidden">
+                <div class="flex w-full items-center justify-between">
+                    <div class="h-7 w-7">
+                      
+                    </div>
+                    <div class="-mr-1.5 flex items-center space-x-2">
+                        <button class="darkmode-toggle btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                            <svg class="darkmode-moon h-6 w-6 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M11.75 3.412a.818.818 0 01-.07.917 6.332 6.332 0 00-1.4 3.971c0 3.564 2.98 6.494 6.706 6.494a6.86 6.86 0 002.856-.617.818.818 0 011.1 1.047C19.593 18.614 16.218 21 12.283 21 7.18 21 3 16.973 3 11.956c0-4.563 3.46-8.31 7.925-8.948a.818.818 0 01.826.404z"></path>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="darkmode-sun h-6 w-6 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+
+                        <button class="monochrome-toggle btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                            <i class="fa-solid fa-palette bg-gradient-to-r from-sky-400 to-blue-600 bg-clip-text text-lg font-semibold text-transparent"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        
+<main class="main-content w-full px-[var(--margin-x)] pb-8">
+    
+
+    <div class="flex items-center space-x-4 py-5 lg:py-6">
+        <h2 class="text-xl font-medium text-slate-800 dark:text-navy-50 lg:text-2xl">
+            Ethereum NFT Secondary Sales
+        </h2>
+        <div class="hidden h-full py-1 sm:flex">
+            <div class="h-full w-px bg-slate-300 dark:bg-navy-600"></div>
+        </div>
+        <ul class="hidden flex-wrap items-center space-x-2 sm:flex">
+            <li class="flex items-center space-x-2">
+                <a class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent" href="/">Overview</a>
+                
+            </li>
+        </ul>
+        <select id="day_box" class="form-select h-8 rounded-full border border-slate-300 bg-slate-50 px-2.5 pr-9 text-xs+ hover:border-slate-400 focus:border-primary dark:border-navy-600 dark:bg-navy-900 dark:hover:border-navy-400 dark:focus:border-accent">
+            <option value="7">Last 7 Day</option>
+            <option value="30">Last 30 Day</option>
+            <option value="90">Last 90 Day</option>
+            <option selected="selected" value="180">Last 180 Day</option>
+        </select>
+        
+    </div>
+    <div style="padding: 15px;" class="card col-span-12 mt-12 bg-gradient-to-r from-blue-500 to-blue-600 p-5 sm:col-span-8 sm:mt-0 sm:flex-row">
+        <div class="mt-3 flex justify-center sm:order-last">
+            <img class="-mt-16 h-40 sm:mt-0" src="https://flipsideworldcup.kurdanalysts.com/images//chains/ethereum.svg" alt="Ethereum">
+        </div>
+        <div class="mt-0 p-5 flex-1 pt-0 text-center text-white sm:mt-0 sm:text-left">
+            <h3 class="text-xl">
+                <span class="font-semibold">Ethereum</span>
+            </h3>
+                <p class="mt-2 leading-relaxed" style="text-align: justify">
+                    Ethereum is an open-source, blockchain-based distributed computing platform and operating system featuring smart contract functionality. It enables developers to create and deploy decentralized applications and allows users to securely store, transfer, and store digital assets. Ethereum is powered by its own cryptocurrency, Ether, which can be used to pay for fees and services on the Ethereum network. It also enables developers to create and deploy their own tokens, which can represent a variety of digital assets, including coins, loyalty points, and in-game items. Ethereum is a powerful tool for creating decentralized applications that are accessible to anyone in the world. NFTs, or Non-Fungible Tokens, are digital assets with unique and unchangeable characteristics. NFTs are stored on a blockchain, making them secure and verifiable, and can represent many different types of digital assets, from art to music to in-game collectibles. NFTs are unique, one-of-a-kind, and can't be replaced by any other asset. This makes them highly collectible and sought after, and provides a new way to monetize and trade digital assets.
+                </p>
+        </div>
+    </div>
+    <div>
+        <div style="margin-top: 30px;" class="mt-4 grid sm:grid-cols-1 sm:gap-5 lg:grid-cols-2 lg:gap-4">
+            <div style="margin: 5px;padding: 5px;" class="card">
+                <canvas id="chart1"></canvas>
+            </div>
+            <div style="margin: 5px;padding: 5px;"  class="card">
+                <canvas id="chart2"></canvas>
+            </div>
+            <div style="margin: 5px;padding: 5px;"  class="card">
+                <canvas id="chart3"></canvas>
+            </div>
+            <div style="margin: 5px;padding: 5px;"  class="card">
+                <canvas id="chart4"></canvas>
+            </div>
+        </div>
+        <div style="margin-top: 30px;" class="mt-4 grid sm:grid-cols-2 sm:gap-5 lg:grid-cols-4 lg:gap-5">
+            <div>
+                <div class="card sm:order-last sm:col-span-2 lg:order-none lg:col-span-1">
+                    <div class="mt-3 flex items-center justify-between px-4 sm:px-5">
+                        <h2 class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
+                            Daily Average NFT Sales Events 
+                        </h2>
+                    </div>
+                    <div class="mt-4 grid grid-cols-1 gap-3 px-4 sm:mt-5 sm:grid-cols-1 sm:gap-5 sm:px-5 lg:mt-6">
+                        <div class="relative flex flex-col overflow-hidden rounded-lg bg-gradient-to-br from-info to-info-focus p-3.5 rounded-2xl" style="margin-bottom: 25px;">
+                            <div class="flex justify-between">
+                                <p id="avg_num_1" class="mt-4 text-2xl font-medium text-white">0.06</p>
+                            </div>
+                            <p class="mt-1 text-xs+ text-white">Average Sales</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="card sm:order-last sm:col-span-2 lg:order-none lg:col-span-1">
+                    <div class="mt-3 flex items-center justify-between px-4 sm:px-5">
+                        <h2 class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
+                            Daily Average NFT Buyers 
+                        </h2>
+                    </div>
+                    <div class="mt-4 grid grid-cols-1 gap-3 px-4 sm:mt-5 sm:grid-cols-1 sm:gap-5 sm:px-5 lg:mt-6">
+                        <div class="relative flex flex-col overflow-hidden rounded-lg bg-gradient-to-br from-info to-info-focus p-3.5 rounded-2xl" style="margin-bottom: 25px;">
+                            <div class="flex justify-between">
+                                <p id="avg_num_2" class="mt-4 text-2xl font-medium text-white">0.06</p>
+                            </div>
+                            <p class="mt-1 text-xs+ text-white">Average Buyers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="card sm:order-last sm:col-span-2 lg:order-none lg:col-span-1">
+                    <div class="mt-3 flex items-center justify-between px-4 sm:px-5">
+                        <h2 class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
+                            Daily Average NFT Volume USD 
+                        </h2>
+                    </div>
+                    <div class="mt-4 grid grid-cols-1 gap-3 px-4 sm:mt-5 sm:grid-cols-1 sm:gap-5 sm:px-5 lg:mt-6">
+                        <div class="relative flex flex-col overflow-hidden rounded-lg bg-gradient-to-br from-info to-info-focus p-3.5 rounded-2xl" style="margin-bottom: 25px;">
+                            <div class="flex justify-between">
+                                <p  id="avg_num_3" class="mt-4 text-2xl font-medium text-white">0.06</p>
+                            </div>
+                            <p class="mt-1 text-xs+ text-white">Average Volume</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="card sm:order-last sm:col-span-2 lg:order-none lg:col-span-1">
+                    <div class="mt-3 flex items-center justify-between px-4 sm:px-5">
+                        <h2 class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
+                            Average NFT Price USD
+                        </h2>
+                    </div>
+                    <div class="mt-4 grid grid-cols-1 gap-3 px-4 sm:mt-5 sm:grid-cols-1 sm:gap-5 sm:px-5 lg:mt-6">
+                        <div class="relative flex flex-col overflow-hidden rounded-lg bg-gradient-to-br from-info to-info-focus p-3.5 rounded-2xl" style="margin-bottom: 25px;">
+                            <div class="flex justify-between">
+                                <p id="avg_num_4" class="mt-4 text-2xl font-medium text-white">0.06</p>
+                            </div>
+                            <p class="mt-1 text-xs+ text-white">Average Price</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="margin: 30;">
+        <div style="margin-top: 30px;" class="mt-4 grid sm:grid-cols-1 sm:gap-5 lg:grid-cols-2 lg:gap-4">
+            <div style="margin: 5px;padding: 5px;text-align: center;" class="card">
+                <h2 style="margin: 5px;" class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
+                    Etherum NFT Sales Volume by Marketplace
+                </h2>
+                <canvas style="padding: 5;margin: 5px;" id="pie_1"></canvas>
+            </div>
+            <div style="margin: 5px;padding: 5px;text-align: center;"  class="card">
+                <h2 style="margin: 5px;" class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
+                    Etherum NFT Buyers by Marketplace
+                </h2>
+                <canvas style="padding: 5;margin: 5px;" id="pie_2"></canvas>
+            </div>
+        </div>
+        <hr style="margin: 30;">
+        <div class="mt-4 sm:mt-5 lg:mt-6" id="top-nft-tab">
+            <div class="flex items-center justify-between space-x-2" style="margin-left: 15px;">
+                <h2 class="text-base font-medium tracking-wide text-slate-700 dark:text-navy-100">
+                    Top 10 NFT Buyers -
+                    <span class="font-large"> Volume USD</span> &nbsp; &nbsp;
+                </h2>
+            </div>
+            <div class="card mt-4" id="top_nft_collection_tab">
+
+<div class="is-scrollbar-hidden min-w-full overflow-x-auto">
+<table class="is-hoverable w-full text-left">
+    <thead>
+        <tr>
+            <th class="whitespace-nowrap rounded-tl-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                NFT Collection Name
+            </th>
+            <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                Total Sales Volume ($)
+            </th>
+        </tr>
+    </thead>
+        <tbody>
+                <tr class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500">
+                    <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                        <div class="flex items-center space-x-4">
+                            <div class="avatar">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48"><mask id="svgIDa"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"><path d="M40 23v-9L31 4H10a2 2 0 0 0-2 2v36a2 2 0 0 0 2 2h12"></path><path fill="#555" d="M30.85 30C28.724 30 27 32.009 27 34.486c0 4.487 4.55 8.565 7 9.514c2.45-.949 7-5.027 7-9.514C41 32.01 39.276 30 37.15 30c-1.302 0-2.453.753-3.15 1.906C33.303 30.753 32.152 30 30.85 30Z"></path><path d="M30 4v10h10"></path></g></mask><path fill="currentColor" d="M0 0h48v48H0z" mask="url(#svgIDa)"></path></svg>
+                            </div>
+                            mutantapeyachtclub
+                        </div>
+                    </td>
+                    <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
+                        $77541916.75
+                    </td>
+                </tr>
+                <tr class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500">
+                    <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                        <div class="flex items-center space-x-4">
+                            <div class="avatar">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48"><mask id="svgIDa"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"><path d="M40 23v-9L31 4H10a2 2 0 0 0-2 2v36a2 2 0 0 0 2 2h12"></path><path fill="#555" d="M30.85 30C28.724 30 27 32.009 27 34.486c0 4.487 4.55 8.565 7 9.514c2.45-.949 7-5.027 7-9.514C41 32.01 39.276 30 37.15 30c-1.302 0-2.453.753-3.15 1.906C33.303 30.753 32.152 30 30.85 30Z"></path><path d="M30 4v10h10"></path></g></mask><path fill="currentColor" d="M0 0h48v48H0z" mask="url(#svgIDa)"></path></svg>
+                            </div>
+                            dreadfulz
+                        </div>
+                    </td>
+                    <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
+                        $67704540.766385
+                    </td>
+                </tr>
+                <tr class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500">
+                    <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                        <div class="flex items-center space-x-4">
+                            <div class="avatar">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48"><mask id="svgIDa"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"><path d="M40 23v-9L31 4H10a2 2 0 0 0-2 2v36a2 2 0 0 0 2 2h12"></path><path fill="#555" d="M30.85 30C28.724 30 27 32.009 27 34.486c0 4.487 4.55 8.565 7 9.514c2.45-.949 7-5.027 7-9.514C41 32.01 39.276 30 37.15 30c-1.302 0-2.453.753-3.15 1.906C33.303 30.753 32.152 30 30.85 30Z"></path><path d="M30 4v10h10"></path></g></mask><path fill="currentColor" d="M0 0h48v48H0z" mask="url(#svgIDa)"></path></svg>
+                            </div>
+                            azuki
+                        </div>
+                    </td>
+                    <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
+                        $60068318.92
+                    </td>
+                </tr>
+                <tr class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500">
+                    <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                        <div class="flex items-center space-x-4">
+                            <div class="avatar">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48"><mask id="svgIDa"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"><path d="M40 23v-9L31 4H10a2 2 0 0 0-2 2v36a2 2 0 0 0 2 2h12"></path><path fill="#555" d="M30.85 30C28.724 30 27 32.009 27 34.486c0 4.487 4.55 8.565 7 9.514c2.45-.949 7-5.027 7-9.514C41 32.01 39.276 30 37.15 30c-1.302 0-2.453.753-3.15 1.906C33.303 30.753 32.152 30 30.85 30Z"></path><path d="M30 4v10h10"></path></g></mask><path fill="currentColor" d="M0 0h48v48H0z" mask="url(#svgIDa)"></path></svg>
+                            </div>
+                            MineablePunks
+                        </div>
+                    </td>
+                    <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
+                        $59727567.4
+                    </td>
+                </tr>
+                <tr class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500">
+                    <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                        <div class="flex items-center space-x-4">
+                            <div class="avatar">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48"><mask id="svgIDa"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"><path d="M40 23v-9L31 4H10a2 2 0 0 0-2 2v36a2 2 0 0 0 2 2h12"></path><path fill="#555" d="M30.85 30C28.724 30 27 32.009 27 34.486c0 4.487 4.55 8.565 7 9.514c2.45-.949 7-5.027 7-9.514C41 32.01 39.276 30 37.15 30c-1.302 0-2.453.753-3.15 1.906C33.303 30.753 32.152 30 30.85 30Z"></path><path d="M30 4v10h10"></path></g></mask><path fill="currentColor" d="M0 0h48v48H0z" mask="url(#svgIDa)"></path></svg>
+                            </div>
+                            clone x
+                        </div>
+                    </td>
+                    <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
+                        $47217570.939056
+                    </td>
+                </tr>
+                <tr class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500">
+                    <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                        <div class="flex items-center space-x-4">
+                            <div class="avatar">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48"><mask id="svgIDa"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"><path d="M40 23v-9L31 4H10a2 2 0 0 0-2 2v36a2 2 0 0 0 2 2h12"></path><path fill="#555" d="M30.85 30C28.724 30 27 32.009 27 34.486c0 4.487 4.55 8.565 7 9.514c2.45-.949 7-5.027 7-9.514C41 32.01 39.276 30 37.15 30c-1.302 0-2.453.753-3.15 1.906C33.303 30.753 32.152 30 30.85 30Z"></path><path d="M30 4v10h10"></path></g></mask><path fill="currentColor" d="M0 0h48v48H0z" mask="url(#svgIDa)"></path></svg>
+                            </div>
+                            the otherside
+                        </div>
+                    </td>
+                    <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
+                        $45550818.9081101
+                    </td>
+                </tr>
+                <tr class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500">
+                    <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                        <div class="flex items-center space-x-4">
+                            <div class="avatar">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48"><mask id="svgIDa"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"><path d="M40 23v-9L31 4H10a2 2 0 0 0-2 2v36a2 2 0 0 0 2 2h12"></path><path fill="#555" d="M30.85 30C28.724 30 27 32.009 27 34.486c0 4.487 4.55 8.565 7 9.514c2.45-.949 7-5.027 7-9.514C41 32.01 39.276 30 37.15 30c-1.302 0-2.453.753-3.15 1.906C33.303 30.753 32.152 30 30.85 30Z"></path><path d="M30 4v10h10"></path></g></mask><path fill="currentColor" d="M0 0h48v48H0z" mask="url(#svgIDa)"></path></svg>
+                            </div>
+                            boredapekennelclub
+                        </div>
+                    </td>
+                    <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
+                        $39702493.780265
+                    </td>
+                </tr>
+                <tr class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500">
+                    <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                        <div class="flex items-center space-x-4">
+                            <div class="avatar">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48"><mask id="svgIDa"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"><path d="M40 23v-9L31 4H10a2 2 0 0 0-2 2v36a2 2 0 0 0 2 2h12"></path><path fill="#555" d="M30.85 30C28.724 30 27 32.009 27 34.486c0 4.487 4.55 8.565 7 9.514c2.45-.949 7-5.027 7-9.514C41 32.01 39.276 30 37.15 30c-1.302 0-2.453.753-3.15 1.906C33.303 30.753 32.152 30 30.85 30Z"></path><path d="M30 4v10h10"></path></g></mask><path fill="currentColor" d="M0 0h48v48H0z" mask="url(#svgIDa)"></path></svg>
+                            </div>
+                            moonbirds
+                        </div>
+                    </td>
+                    <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
+                        $31038702.231
+                    </td>
+                </tr>
+                <tr class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500">
+                    <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                        <div class="flex items-center space-x-4">
+                            <div class="avatar">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48"><mask id="svgIDa"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"><path d="M40 23v-9L31 4H10a2 2 0 0 0-2 2v36a2 2 0 0 0 2 2h12"></path><path fill="#555" d="M30.85 30C28.724 30 27 32.009 27 34.486c0 4.487 4.55 8.565 7 9.514c2.45-.949 7-5.027 7-9.514C41 32.01 39.276 30 37.15 30c-1.302 0-2.453.753-3.15 1.906C33.303 30.753 32.152 30 30.85 30Z"></path><path d="M30 4v10h10"></path></g></mask><path fill="currentColor" d="M0 0h48v48H0z" mask="url(#svgIDa)"></path></svg>
+                            </div>
+                            rarible
+                        </div>
+                    </td>
+                    <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
+                        $27148345.5516003
+                    </td>
+                </tr>
+                <tr class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500">
+                    <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                        <div class="flex items-center space-x-4">
+                            <div class="avatar">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48"><mask id="svgIDa"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"><path d="M40 23v-9L31 4H10a2 2 0 0 0-2 2v36a2 2 0 0 0 2 2h12"></path><path fill="#555" d="M30.85 30C28.724 30 27 32.009 27 34.486c0 4.487 4.55 8.565 7 9.514c2.45-.949 7-5.027 7-9.514C41 32.01 39.276 30 37.15 30c-1.302 0-2.453.753-3.15 1.906C33.303 30.753 32.152 30 30.85 30Z"></path><path d="M30 4v10h10"></path></g></mask><path fill="currentColor" d="M0 0h48v48H0z" mask="url(#svgIDa)"></path></svg>
+                            </div>
+                            boredapeyachtclub
+                        </div>
+                    </td>
+                    <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
+                        $110162392.27
+                    </td>
+                </tr>
+        </tbody>
+</table>
+</div></div>
+        </div>
+
+    </div>
+</main>
+
+</div>
+
+
+</body>
+<script>
+function getColorHexFromName(colorName) {
+  const colorMap = {
+    red: '#ff0000',
+    green: '#00ff00',
+    blue: '#0000ff',
+    yellow: '#ffff00',
+    purple: '#800080',
+    orange: '#ffa500'
+  };
+  return colorMap[colorName] || '#000000';
+}
+
+function hexToRgba(hex, alpha) {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? `rgba(${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}, ${alpha})` : null;
+}
+
+function getAverageOfLastX(array, x) {
+  const lastX = array.slice(-x);
+  let total = 0;
+  for (const value of lastX) {
+    total += value;
+  }
+  return (total / x).toFixed(2);
+}
+
+// Define the function to create the time chart
+function createChart(canvasId, days, values, chartType, colorName, label_name) {
+  // Use the color-name library to convert the color name to a hexadecimal color code
+  const colorHex = getColorHexFromName(colorName);
+
+  // Get the canvas element
+  var ctx = document.getElementById(canvasId).getContext('2d');
+
+  // Create the chart using Chart.js
+  var chart = new Chart(ctx, {
+    type: chartType,
+    data: {
+      labels: days,
+      datasets: [{
+        label: label_name,
+        data: values,
+        backgroundColor: hexToRgba(colorHex, 0.4),
+        borderColor: colorHex,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+
+  // Add an event listener to the select box to update the chart when its value is changed
+  document.getElementById('day_box').addEventListener('change', function() {
+    // Get the value of the select box
+    var numDays = this.value;
+
+    // Get the last x items in the lists, where x is the value of the select box
+    var chartDays = days.slice(-numDays);
+    var chartValues = values.slice(-numDays);
+
+    // Update the chart data and labels
+    chart.data.labels = chartDays;
+    chart.data.datasets[0].data = chartValues;
+
+    // Re-render the chart
+    chart.update();
+  }, false, chart); // Pass the chart variable as a parameter to the event listener
+}
+
+// Define the function to create the pie chart
+function createPieChart(data, canvasId, timeframe, val_num) {
+    const filteredData = data.filter(item => item.TIMEFRAME === timeframe);
+
+    // Extract the PLATFORM_NAME and SALES_VOLUME values from each dictionary
+    const labels = filteredData.map(item => item.PLATFORM_NAME);
+    const values1 = filteredData.map(item => item.SALES_VOLUME);  
+    const values2 = filteredData.map(item => item.NFT_BUYERS);  
+
+    let values;
+if(val_num == 1){
+  values = values1;
+}else{
+  values = values2;
+}
+
+  const backgroundColors = ['#FF0000', '#0000FF', '#00FF00', '#FFFF00', '#800080', '#FFA500', '#40E0D0', '#FFC0CB'];
+  const pieColors = [];
+  for (let i = 0; i < labels.length; i++) {
+    pieColors.push(backgroundColors[i % backgroundColors.length]);
+  }
+  const ctx = document.getElementById(canvasId).getContext('2d');
+  const chart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: backgroundColors.map(x => hexToRgba(x, 0.4)),
+        borderColor: backgroundColors
+      }]
+    }
+  });
+  document.getElementById('day_box').addEventListener('change', function() {
+    const timeframe1 = this.value;
+    //alert(timeframe1)
+    //alert(item.TIMEFRAME)
+    const filteredData1 = data.filter(item => item.TIMEFRAME == timeframe1);
+
+    // Extract the PLATFORM_NAME and SALES_VOLUME values from each dictionary
+    const labels2 = filteredData1.map(item => item.PLATFORM_NAME);
+    let values6   
+
+    if(val_num == 1){
+    values6 = filteredData1.map(item => item.SALES_VOLUME);
+    }else{
+    values6 = filteredData1.map(item => item.NFT_BUYERS);;
+    }
+
+    chart.data.labels = labels2;
+    chart.data.datasets[0].data = values6;
+    chart.update();
+  });
+
+}
+
+
+//first api implementation 
+fetch('https://node-api.flipsidecrypto.com/api/v2/queries/f887d3f4-2430-463d-8e14-c2fe9f94bc0f/data/latest')
+  .then(response => response.json())
+  .then(data => {
+    // Extract the data for each chart
+    const salesData = data.map(day => day.SALES);
+    const nftBuyersData = data.map(day => day.NFT_BUYERS);
+    const salesVolumeData = data.map(day => day.SALES_VOLUME);
+    const avgPriceData = data.map(day => day.AVG_PRICE);
+    const dayData = data.map(day => day.DAY);
+
+    // Create the charts
+    createChart('chart1', dayData, salesData, 'bar', 'orange', 'NFT Sales');
+    createChart('chart2', dayData, nftBuyersData, 'line', 'orange', 'NFT Buyers');
+    createChart('chart3', dayData, salesVolumeData, 'line', 'orange', 'NFT Volume USD');
+    createChart('chart4', dayData, avgPriceData, 'line', 'orange', 'Average NFT Price USD');
+
+    // create data point event listner 
+    document.getElementById('day_box').addEventListener('change', function() {
+        const numDays = this.value;
+        const salesAverage = getAverageOfLastX(salesData, numDays);
+        const nftBuyersAverage = getAverageOfLastX(nftBuyersData, numDays);
+        const salesVolumeAverage = getAverageOfLastX(salesVolumeData, numDays);
+        const avgPriceAverage = getAverageOfLastX(avgPriceData, numDays);
+
+        $("#avg_num_1").html((salesAverage/1000).toFixed(2) + "K" )
+        $("#avg_num_2").html((nftBuyersAverage/1000).toFixed(2) + "K" )
+        $("#avg_num_3").html("$" + (salesVolumeAverage/1000000).toFixed(2) + "M" )
+        $("#avg_num_4").html("$" + avgPriceAverage)
+
+    });
+    // create inital data points 
+    const numDays = this.value;
+    const salesAverage = getAverageOfLastX(salesData, 180);
+    const nftBuyersAverage = getAverageOfLastX(nftBuyersData, 180);
+    const salesVolumeAverage = getAverageOfLastX(salesVolumeData, 180);
+    const avgPriceAverage = getAverageOfLastX(avgPriceData, 180);
+
+    $("#avg_num_1").html((salesAverage/1000).toFixed(2) + "K" )
+    $("#avg_num_2").html((nftBuyersAverage/1000).toFixed(2) + "K" )
+    $("#avg_num_3").html("$" + (salesVolumeAverage/1000000).toFixed(2) + "M" )
+    $("#avg_num_4").html("$" + avgPriceAverage)
+
+});
+
+//seccond api implementation 
+fetch('https://node-api.flipsidecrypto.com/api/v2/queries/5ef28d4f-f670-4e1f-9542-e71a2ba1dea9/data/latest')
+  .then(response => response.json())
+  .then(data => {
+    createPieChart(data, "pie_1", 180, 1),
+    createPieChart(data, "pie_2", 180, 2)
+});
+
+</script>
